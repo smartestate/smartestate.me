@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import WaitlistForm from "./WaitlistForm";
 
 const links = [
   { label: "Product", href: "#product" },
@@ -10,7 +9,11 @@ const links = [
   { label: "FAQ", href: "#faq" },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  onJoinWaitlistClick?: () => void;
+}
+
+export default function Navbar({ onJoinWaitlistClick }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -22,9 +25,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
-            SS
+            SE
           </div>
-          <span className="font-semibold text-foreground text-lg">Smartest State</span>
+          <span className="font-semibold text-foreground text-lg">Smart Estate</span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
@@ -40,7 +43,14 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:block">
-          <WaitlistForm variant="nav" />
+          <motion.button
+            onClick={onJoinWaitlistClick}
+            className="rounded-full bg-primary text-primary-foreground font-medium cursor-pointer whitespace-nowrap px-5 py-2 text-sm"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            Join Waitlist
+          </motion.button>
         </div>
 
         <button
@@ -75,7 +85,17 @@ export default function Navbar() {
             </a>
           ))}
           <div className="pt-2">
-            <WaitlistForm variant="nav" />
+            <motion.button
+              onClick={() => {
+                setMobileOpen(false);
+                onJoinWaitlistClick?.();
+              }}
+              className="rounded-full bg-primary text-primary-foreground font-medium cursor-pointer whitespace-nowrap px-5 py-2 text-sm"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Join Waitlist
+            </motion.button>
           </div>
         </motion.div>
       )}

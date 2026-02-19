@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { PartyPopper } from "lucide-react";
 
 const companyTypes = ["Real Estate Company", "Maintenance Company", "Other"];
 
@@ -21,14 +22,23 @@ const ConfettiPiece = ({ delay, x }: { delay: number; x: number }) => (
 
 interface WaitlistFormProps {
   variant?: "nav" | "hero";
+  externalOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
-export default function WaitlistForm({ variant = "hero" }: WaitlistFormProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function WaitlistForm({ variant = "hero", externalOpen, onOpenChange }: WaitlistFormProps) {
+  const [internalOpen, setInternalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", company: "" });
   const [companyType, setCompanyType] = useState("");
   const ref = useRef<HTMLDivElement>(null);
+
+  const isOpen = externalOpen !== undefined ? externalOpen : internalOpen;
+
+  const setIsOpen = (val: boolean) => {
+    if (onOpenChange) onOpenChange(val);
+    setInternalOpen(val);
+  };
 
   useEffect(() => {
     if (submitted) {
@@ -69,11 +79,12 @@ export default function WaitlistForm({ variant = "hero" }: WaitlistFormProps) {
           <motion.div
             key="success"
             layoutId={`waitlist-${variant}`}
-            className="relative overflow-hidden rounded-2xl bg-primary text-primary-foreground px-8 py-4 text-center font-medium"
+            className="relative overflow-hidden rounded-2xl bg-primary text-primary-foreground px-8 py-4 text-center font-medium flex items-center justify-center gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            🎉 You're on the list!
+            <PartyPopper className="w-5 h-5" />
+            You're on the list!
             {Array.from({ length: 12 }).map((_, i) => (
               <ConfettiPiece key={i} delay={i * 0.05} x={Math.random() * 100} />
             ))}

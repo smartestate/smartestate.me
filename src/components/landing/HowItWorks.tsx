@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
+import { Smartphone, Bot, Wrench, CheckCircle } from "lucide-react";
 
 const steps = [
-  { num: "01", title: "Tenants submit issue", desc: "Text, photo, or video — any format works.", icon: "📱" },
-  { num: "02", title: "AI categorizes + urgency", desc: "Instant triage with smart categorization.", icon: "🤖" },
-  { num: "03", title: "Smart technician matching", desc: "Skills, availability, and proximity considered.", icon: "🔧" },
-  { num: "04", title: "Track & close with audit trail", desc: "Full visibility from start to finish.", icon: "✅" },
+  { num: "01", title: "Tenants submit issue", desc: "Text, photo, or video — any format works.", icon: Smartphone },
+  { num: "02", title: "AI categorizes + urgency", desc: "Instant triage with smart categorization.", icon: Bot },
+  { num: "03", title: "Smart technician matching", desc: "Skills, availability, and proximity considered.", icon: Wrench },
+  { num: "04", title: "Track & close with audit trail", desc: "Full visibility from start to finish.", icon: CheckCircle },
 ];
 
 export default function HowItWorks() {
@@ -35,7 +36,9 @@ export default function HowItWorks() {
             >
               <span className="text-6xl font-bold text-primary/10 absolute -top-2 -left-1">{s.num}</span>
               <div className="relative pt-12">
-                <div className="text-3xl mb-3">{s.icon}</div>
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                  <s.icon className="w-5 h-5 text-primary" />
+                </div>
                 <h3 className="font-semibold text-foreground mb-2">{s.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>

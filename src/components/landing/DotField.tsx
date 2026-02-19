@@ -91,7 +91,6 @@ export default function DotField() {
     };
   }, [draw]);
 
-  // Respect reduced motion
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mq.matches) {
@@ -109,7 +108,7 @@ export default function DotField() {
           className="text-center mb-8"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            FlowState builds products that scale
+            Building products that scale
           </h2>
           <p className="text-muted-foreground text-lg">Developers achieve new heights</p>
         </motion.div>
