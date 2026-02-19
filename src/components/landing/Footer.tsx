@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-card">
@@ -8,17 +10,27 @@ export default function Footer() {
         </div>
         <div className="flex gap-16">
           <div className="space-y-3">
-            {["Download", "Product", "Docs", "Changelog", "Press", "Releases"].map((l) => (
-              <a key={l} href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {l}
-              </a>
+            {[
+              { label: "Download", to: "/download" },
+              { label: "Product", to: "/#product" },
+              { label: "Docs", to: "/docs" },
+              { label: "Changelog", to: "/changelog" },
+              { label: "Press", to: "/press" },
+              { label: "Releases", to: "/releases" },
+            ].map((l) => (
+              <Link key={l.label} to={l.to} className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {l.label}
+              </Link>
             ))}
           </div>
           <div className="space-y-3">
-            {["Blog", "Pricing", "Use Cases"].map((l) => (
-              <a key={l} href="#" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {l}
-              </a>
+            {[
+              { label: "Updates", to: "/updates" },
+              { label: "Pricing", to: "/pricing" },
+            ].map((l) => (
+              <Link key={l.label} to={l.to} className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {l.label}
+              </Link>
             ))}
           </div>
         </div>
@@ -27,8 +39,8 @@ export default function Footer() {
       {/* Giant wordmark */}
       <div className="px-6 pb-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-[clamp(3rem,10vw,9rem)] font-black text-foreground/[0.06] leading-none tracking-tighter select-none">
-            Smartest State
+          <h2 className="text-[clamp(3rem,10vw,9rem)] font-black text-foreground/[0.12] leading-none tracking-tighter select-none">
+            Smart Estate
           </h2>
         </div>
       </div>
@@ -36,12 +48,17 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span className="text-sm text-muted-foreground">FlowState</span>
+          <span className="text-sm text-muted-foreground">Smart Estate</span>
           <div className="flex gap-6">
-            {["About", "Team", "Privacy", "Terms"].map((l) => (
-              <a key={l} href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {l}
-              </a>
+            {[
+              { label: "About", to: "/about" },
+              { label: "Team", to: "/#team" },
+              { label: "Privacy", to: "/privacy" },
+              { label: "Terms", to: "/terms" },
+            ].map((l) => (
+              <Link key={l.label} to={l.to} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                {l.label}
+              </Link>
             ))}
           </div>
         </div>

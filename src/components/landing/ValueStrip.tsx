@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
+import { Zap, Target, Shield, Eye } from "lucide-react";
 
 const values = [
-  { icon: "⚡", title: "Faster triage", desc: "AI categorizes issues in seconds" },
-  { icon: "🎯", title: "Smarter assignment", desc: "Match the right tech, every time" },
-  { icon: "🛡️", title: "SLA confidence", desc: "Never miss a deadline again" },
-  { icon: "👁️", title: "Real-time visibility", desc: "Track every request live" },
+  { icon: Zap, title: "Faster triage", desc: "AI categorizes issues in seconds" },
+  { icon: Target, title: "Smarter assignment", desc: "Match the right tech, every time" },
+  { icon: Shield, title: "SLA confidence", desc: "Never miss a deadline again" },
+  { icon: Eye, title: "Real-time visibility", desc: "Track every request live" },
 ];
 
 export default function ValueStrip() {
@@ -20,7 +21,9 @@ export default function ValueStrip() {
             transition={{ delay: i * 0.1, duration: 0.5 }}
             className="rounded-2xl bg-card border border-border p-6 hover-lift"
           >
-            <div className="text-3xl mb-3">{v.icon}</div>
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+              <v.icon className="w-5 h-5 text-primary" />
+            </div>
             <h3 className="font-semibold text-foreground mb-1">{v.title}</h3>
             <p className="text-sm text-muted-foreground">{v.desc}</p>
           </motion.div>

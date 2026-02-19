@@ -3,7 +3,12 @@ import { motion, useInView } from "framer-motion";
 import WaitlistForm from "./WaitlistForm";
 import VideoModal from "./VideoModal";
 
-export default function Hero() {
+interface HeroProps {
+  waitlistOpen?: boolean;
+  onWaitlistOpenChange?: (open: boolean) => void;
+}
+
+export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) {
   const videoRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(videoRef, { once: true, margin: "-100px" });
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -31,18 +36,18 @@ export default function Hero() {
         >
           <div className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-sm text-accent-foreground font-medium mb-6">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            Now in early access
+            Now under development
           </div>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.08] mb-6">
             Property maintenance,{" "}
             <span className="text-gradient">reimagined</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-lg mb-8 leading-relaxed">
-            Smartest State uses AI to triage, assign, and track maintenance
+            Smart Estate uses AI to triage, assign, and track maintenance
             requests — so your team can respond faster and tenants stay happier.
           </p>
           <div className="flex flex-wrap items-center gap-4">
-            <WaitlistForm variant="hero" />
+            <WaitlistForm variant="hero" externalOpen={waitlistOpen} onOpenChange={onWaitlistOpenChange} />
             <a
               href="#how-it-works"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
