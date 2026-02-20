@@ -1,0 +1,27 @@
+.curved-loop-jacket {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.25rem 0;
+}
+
+.curved-loop-svg {
+  user-select: none;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+  font-size: 1.4rem;
+  fill: currentColor; /* use currentColor so text color can be controlled via classes */
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  font-weight: 700;
+  text-transform: none;
+  line-height: 1;
+}
+
+/* larger on medium screens */
+@media (min-width: 768px) {
+  .curved-loop-svg { font-size: 2rem; }
+}

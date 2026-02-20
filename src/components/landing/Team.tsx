@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 
 const members = [
-  { name: "Sahil Saleem", role: "Project Lead" },
-  { name: "Shreyans Saha", role: "Front-end Developer" },
-  { name: "Muhammad Moiz", role: "Documentation / BA" },
+  { name: "Sahil Saleem", role: "Project Lead, UI/UX" },
+  { name: "Shreyans Saha", role: "Back-end Developer" },
+  { name: "Muhammad Moiz", role: "Front-end Developer" },
   { name: "Inigo Monson", role: "Back-end Developer" },
   { name: "Aaron Braganza", role: "AI/ML Engineer" },
-  { name: "Bhoomika Sangtani", role: "UI/UX Designer" },
+  { name: "Bhoomika Sangtani", role: "AI/ML Engineer" },
 ];
 
 export default function Team() {

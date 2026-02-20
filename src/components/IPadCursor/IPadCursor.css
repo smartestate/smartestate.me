@@ -33,3 +33,9 @@
         display: none !important;
     }
 }
+
+/* Hide cursor when a page-level class requests it (e.g. hovering a video) */
+.hide-ipad-cursor .ipad-cursor {
+    opacity: 0 !important;
+    pointer-events: none;
+}

@@ -1,7 +1,8 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import WaitlistForm from "./WaitlistForm";
 import VideoModal from "./VideoModal";
+import BlurText from "./BlurText";
 
 interface HeroProps {
   waitlistOpen?: boolean;
@@ -13,16 +14,63 @@ export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) 
   const isInView = useInView(videoRef, { once: true, margin: "-100px" });
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
+  const [scrollT, setScrollT] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const lastClient = useRef({ x: 0, y: 0 });
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
+    lastClient.current = { x: e.clientX, y: e.clientY };
     setCursorPos({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
     });
+  }, []);
+
+  // Keep the floating play label aligned when the page is scrolled or resized
+  useEffect(() => {
+    if (!hovering) return;
+    const onScrollOrResize = () => {
+      if (!cardRef.current) return;
+      const rect = cardRef.current.getBoundingClientRect();
+      const { x, y } = lastClient.current;
+      setCursorPos({ x: x - rect.left, y: y - rect.top });
+    };
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    return () => {
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
+  }, [hovering]);
+
+  // Drive card size from scroll position. t: 0 (small) -> 1 (large)
+  useEffect(() => {
+    const el = cardRef.current || videoRef.current;
+    if (!el) return;
+
+    const onScroll = () => {
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Start when the element top reaches bottom of viewport (rect.top = vh)
+      // End when element top reaches 20% from top of viewport (rect.top = vh*0.2)
+      const start = vh;
+      const end = vh * 0.2;
+      const raw = (start - rect.top) / (start - end);
+      const t = Math.min(1, Math.max(0, raw));
+      setScrollT(t);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   return (
@@ -40,8 +88,20 @@ export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) 
             Now under development
           </div>
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[1.08] mb-6">
-            Property maintenance,{" "}
-            <span className="text-gradient">reimagined</span>
+            <div className="leading-[1.08]">
+              <div>
+                <BlurText text={"Property"} className={"inline-block"} delay={0.02} />
+              </div>
+              <div>
+                <BlurText
+                  text={"maintenance, reimagined"}
+                  highlight={"reimagined"}
+                  className={"inline-block"}
+                  highlightClassName={"text-gradient inline-block"}
+                  delay={0.08}
+                />
+              </div>
+            </div>
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed">
             Smart Estate uses AI to triage, assign, and track maintenance
@@ -63,13 +123,22 @@ export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) 
       <section className="min-h-screen flex items-center justify-center px-6" ref={videoRef}>
         <motion.div
           ref={cardRef}
-          className="relative w-full max-w-5xl rounded-2xl bg-card border border-border overflow-hidden aspect-video cursor-pointer shadow-lg"
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          style={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          onMouseEnter={() => setHovering(true)}
-          onMouseLeave={() => setHovering(false)}
+          className="relative rounded-2xl bg-card border border-border overflow-hidden aspect-video cursor-pointer"
+          initial={{ opacity: 0, width: "20vw" }}
+          animate={{
+            // opacity slightly improves visibility; width driven by scrollT
+            opacity: 0.95,
+            width: `${20 + scrollT * 75}vw`,
+          }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          onMouseEnter={() => {
+            setHovering(true);
+            document.documentElement.classList.add("hide-ipad-cursor");
+          }}
+          onMouseLeave={() => {
+            setHovering(false);
+            document.documentElement.classList.remove("hide-ipad-cursor");
+          }}
           onMouseMove={handleMouseMove}
           onClick={() => setModalOpen(true)}
         >
