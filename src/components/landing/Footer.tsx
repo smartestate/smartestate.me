@@ -16,7 +16,6 @@ export default function Footer() {
               { label: "Docs", to: "/docs" },
               { label: "Changelog", to: "/changelog" },
               { label: "Press", to: "/press" },
-              { label: "Releases", to: "/releases" },
             ].map((l) => (
               <Link key={l.label} to={l.to} className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
                 {l.label}

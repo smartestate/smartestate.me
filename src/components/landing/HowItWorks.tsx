@@ -25,7 +25,7 @@ export default function HowItWorks() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
           {steps.map((s, i) => (
             <motion.div
               key={s.num}
@@ -36,8 +36,8 @@ export default function HowItWorks() {
               style={{ opacity: 0 }}
               className="relative"
             >
-              <span className="text-6xl font-bold text-primary/10 absolute -top-2 -left-1">{s.num}</span>
-              <div className="relative pt-12">
+              <span className="text-4xl md:text-6xl font-bold text-primary/10 absolute -top-2 -left-1">{s.num}</span>
+              <div className="relative pt-8 md:pt-12">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
                   <s.icon className="w-5 h-5 text-primary" />
                 </div>
