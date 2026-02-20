@@ -1,10 +1,8 @@
 import { useState, useCallback } from "react";
 import Navbar from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero";
-import ValueStrip from "@/components/landing/ValueStrip";
 import HowItWorks from "@/components/landing/HowItWorks";
 import FeatureGallery from "@/components/landing/FeatureGallery";
-
 import Team from "@/components/landing/Team";
 import FAQ from "@/components/landing/FAQ";
 import Footer from "@/components/landing/Footer";
@@ -22,10 +20,8 @@ export default function Index() {
       <Navbar onJoinWaitlistClick={handleJoinWaitlistClick} />
       <main>
         <Hero waitlistOpen={waitlistOpen} onWaitlistOpenChange={setWaitlistOpen} />
-        <ValueStrip />
         <HowItWorks />
         <FeatureGallery />
-        
         <Team />
         <FAQ />
       </main>
