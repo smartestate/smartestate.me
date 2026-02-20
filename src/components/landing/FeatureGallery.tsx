@@ -1,12 +1,17 @@
 import { motion } from "framer-motion";
+import { Zap, Target, Shield, Eye, MessageSquareText, Brain, Users, Activity, Bell, BarChart3 } from "lucide-react";
 
 const features = [
-  { title: "Multimedia ticket intake", desc: "Text, photos, videos — tenants choose how to report.", gradient: "from-primary/20 to-accent" },
-  { title: "AI auto-categorization & urgency", desc: "Instantly classify and prioritize every issue.", gradient: "from-accent to-primary/10" },
-  { title: "Smart technician matching", desc: "Skills, schedule, and location-aware dispatch.", gradient: "from-primary/10 to-accent" },
-  { title: "Real-time status tracking", desc: "Tenants and managers see live progress updates.", gradient: "from-accent to-primary/15" },
-  { title: "SLA monitoring & escalation", desc: "Automated alerts before deadlines hit.", gradient: "from-primary/15 to-accent" },
-  { title: "Analytics & reporting", desc: "Dashboards that surface actionable insights.", gradient: "from-accent to-primary/20" },
+  { title: "Faster triage", desc: "AI categorizes issues in seconds.", icon: Zap },
+  { title: "Smarter assignment", desc: "Match the right tech, every time.", icon: Target },
+  { title: "SLA confidence", desc: "Never miss a deadline again.", icon: Shield },
+  { title: "Real-time visibility", desc: "Track every request live.", icon: Eye },
+  { title: "Multimedia ticket intake", desc: "Text, photos, videos — tenants choose how to report.", icon: MessageSquareText },
+  { title: "AI auto-categorization & urgency", desc: "Instantly classify and prioritize every issue.", icon: Brain },
+  { title: "Smart technician matching", desc: "Skills, schedule, and location-aware dispatch.", icon: Users },
+  { title: "Real-time status tracking", desc: "Tenants and managers see live progress updates.", icon: Activity },
+  { title: "SLA monitoring & escalation", desc: "Automated alerts before deadlines hit.", icon: Bell },
+  { title: "Analytics & reporting", desc: "Dashboards that surface actionable insights.", icon: BarChart3 },
 ];
 
 export default function FeatureGallery() {
@@ -31,17 +36,15 @@ export default function FeatureGallery() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: i * 0.08 }}
+              transition={{ delay: i * 0.06 }}
               style={{ opacity: 0 }}
-              className="group rounded-2xl bg-card border border-border overflow-hidden hover-lift"
+              className="group rounded-2xl bg-card border border-border p-6 hover-lift"
             >
-              <div className={`aspect-video bg-gradient-to-br ${f.gradient} flex items-center justify-center`}>
-                <div className="w-16 h-12 rounded-lg bg-background/60 border border-border/50" />
+              <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center mb-4">
+                <f.icon className="w-5 h-5 text-primary" />
               </div>
-              <div className="p-5">
-                <h3 className="font-semibold text-foreground mb-1">{f.title}</h3>
-                <p className="text-sm text-muted-foreground">{f.desc}</p>
-              </div>
+              <h3 className="font-semibold text-foreground mb-1">{f.title}</h3>
+              <p className="text-sm text-muted-foreground">{f.desc}</p>
             </motion.div>
           ))}
         </div>
