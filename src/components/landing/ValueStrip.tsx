@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Zap, Target, Shield, Eye } from "lucide-react";
 
 const values = [
@@ -10,23 +9,21 @@ const values = [
 
 export default function ValueStrip() {
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <section className="py-16 px-6 border-y border-border bg-card/50">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 sm:gap-4">
         {values.map((v, i) => (
-          <motion.div
-            key={v.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            className="rounded-2xl bg-card border border-border p-6 hover-lift"
-          >
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-              <v.icon className="w-5 h-5 text-primary" />
+          <div key={v.title} className="flex items-start gap-3 flex-1">
+            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+              <v.icon className="w-4 h-4 text-primary" />
             </div>
-            <h3 className="font-semibold text-foreground mb-1">{v.title}</h3>
-            <p className="text-sm text-muted-foreground">{v.desc}</p>
-          </motion.div>
+            <div>
+              <h3 className="font-semibold text-foreground text-sm">{v.title}</h3>
+              <p className="text-xs text-muted-foreground mt-0.5">{v.desc}</p>
+            </div>
+            {i < values.length - 1 && (
+              <div className="hidden sm:block w-px h-10 bg-border ml-auto" />
+            )}
+          </div>
         ))}
       </div>
     </section>

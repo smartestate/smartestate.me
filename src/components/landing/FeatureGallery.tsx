@@ -16,7 +16,8 @@ export default function FeatureGallery() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
+          style={{ opacity: 0 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Features</h2>
@@ -29,8 +30,9 @@ export default function FeatureGallery() {
               key={f.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: i * 0.08 }}
+              style={{ opacity: 0 }}
               className="group rounded-2xl bg-card border border-border overflow-hidden hover-lift"
             >
               <div className={`aspect-video bg-gradient-to-br ${f.gradient} flex items-center justify-center`}>

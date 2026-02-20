@@ -37,9 +37,9 @@ export default function Footer() {
       </div>
 
       {/* Giant wordmark */}
-      <div className="px-6 pb-4">
+      <div className="px-6 pb-4 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-[clamp(3rem,10vw,9rem)] font-black text-foreground/[0.12] leading-none tracking-tighter select-none">
+          <h2 className="text-[clamp(4rem,15vw,13rem)] font-black text-foreground/20 leading-[0.85] tracking-tighter select-none whitespace-nowrap">
             Smart Estate
           </h2>
         </div>
