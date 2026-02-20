@@ -1,0 +1,35 @@
+/* iPadOS-style cursor */
+.ipad-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    pointer-events: none;
+    will-change: transform, width, height, border-radius, opacity;
+    mix-blend-mode: normal;
+    background: rgba(120, 120, 130, 0.18);
+    border: 1px solid rgba(120, 120, 130, 0.08);
+    backdrop-filter: blur(1px);
+    transition: opacity 0.2s ease;
+}
+
+.ipad-cursor--hidden {
+    opacity: 0;
+}
+
+.ipad-cursor--pressing {
+    /* handled via framer-motion scale, but we make it slightly darker */
+    background: rgba(100, 100, 115, 0.28);
+}
+
+.ipad-cursor--text {
+    mix-blend-mode: difference;
+    background: rgba(80, 80, 90, 0.6);
+}
+
+/* Don't show the custom cursor on touch devices */
+@media (pointer: coarse) {
+    .ipad-cursor {
+        display: none !important;
+    }
+}

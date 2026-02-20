@@ -51,19 +51,37 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-semibold tracking-tight;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-[hsl(265,90%,65%)];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-[hsl(265_90%_65%)];
   }
+
   .hover-lift {
     @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+}
+
+/* Hide native cursor on desktop (fine-pointer) when iPadOS cursor is active */
+@media (pointer: fine) {
+
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
   }
 }

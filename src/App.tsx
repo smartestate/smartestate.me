@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
+import IPadCursor from "./components/IPadCursor/IPadCursor";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ const placeholderRoutes = [
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+    <IPadCursor />
     <TooltipProvider>
       <Toaster />
       <Sonner />
