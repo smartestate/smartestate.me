@@ -15,7 +15,8 @@ export default function HowItWorks() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
+          style={{ opacity: 0 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">How it works</h2>
@@ -30,8 +31,9 @@ export default function HowItWorks() {
               key={s.num}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: i * 0.12 }}
+              style={{ opacity: 0 }}
               className="relative"
             >
               <span className="text-6xl font-bold text-primary/10 absolute -top-2 -left-1">{s.num}</span>

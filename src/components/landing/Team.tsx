@@ -16,7 +16,8 @@ export default function Team() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
+          style={{ opacity: 0 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Meet the team</h2>
@@ -29,8 +30,9 @@ export default function Team() {
               key={m.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: i * 0.08 }}
+              style={{ opacity: 0 }}
               className="rounded-2xl bg-card border border-border p-6 text-center hover-lift"
             >
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-accent mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-primary">
