@@ -39,7 +39,7 @@ export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) 
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             Now under development
           </div>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.08] mb-6">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[1.08] mb-6">
             Property maintenance,{" "}
             <span className="text-gradient">reimagined</span>
           </h1>

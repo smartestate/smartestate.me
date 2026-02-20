@@ -29,7 +29,7 @@ export default function FeatureGallery() {
           <p className="text-muted-foreground text-lg">Everything you need for modern property maintenance.</p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
@@ -38,7 +38,7 @@ export default function FeatureGallery() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: i * 0.06 }}
               style={{ opacity: 0 }}
-              className="group rounded-2xl bg-card border border-border p-6 hover-lift"
+              className="group rounded-2xl bg-card border border-border p-4 sm:p-6 hover-lift"
             >
               <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center mb-4">
                 <f.icon className="w-5 h-5 text-primary" />

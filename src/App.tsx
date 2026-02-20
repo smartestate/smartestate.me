@@ -11,7 +11,7 @@ import IPadCursor from "./components/IPadCursor/IPadCursor";
 const queryClient = new QueryClient();
 
 const placeholderRoutes = [
-  "/download", "/docs", "/changelog", "/releases", "/press",
+  "/download", "/docs", "/changelog", "/press",
   "/pricing", "/updates", "/about", "/privacy", "/terms",
 ];
 

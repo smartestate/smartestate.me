@@ -2,11 +2,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const links = [
-  { label: "Product", href: "#product" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Features", href: "#features" },
-  { label: "Team", href: "#team" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Docs", href: "/docs" },
+  { label: "Press", href: "/press" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Download", href: "/download" },
 ];
 
 interface NavbarProps {

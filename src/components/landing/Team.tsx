@@ -24,7 +24,7 @@ export default function Team() {
           <p className="text-muted-foreground text-lg">The people behind Smart Estate</p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {members.map((m, i) => (
             <motion.div
               key={m.name}
@@ -33,9 +33,9 @@ export default function Team() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: i * 0.08 }}
               style={{ opacity: 0 }}
-              className="rounded-2xl bg-card border border-border p-6 text-center hover-lift"
+              className="rounded-2xl bg-card border border-border p-4 sm:p-6 text-center hover-lift"
             >
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-accent mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-primary">
+              <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-primary/20 to-accent mx-auto mb-3 sm:mb-4 flex items-center justify-center text-xl sm:text-2xl font-bold text-primary">
                 {m.name.split(" ").map(n => n[0]).join("")}
               </div>
               <h3 className="font-semibold text-foreground">{m.name}</h3>
