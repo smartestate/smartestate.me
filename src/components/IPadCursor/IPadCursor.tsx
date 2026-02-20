@@ -83,7 +83,23 @@ export default function IPadCursor() {
     // Core logic: evaluate what's under a given viewport coordinate and update cursor
     const updateCursorAt = useCallback(
         (cx: number, cy: number) => {
-            const elUnder = document.elementFromPoint(cx, cy);
+                const elUnder = document.elementFromPoint(cx, cy);
+                // If the element (or any ancestor) declares data-cursor-ignore="true", skip snapping/morphing
+                if (elUnder instanceof Element) {
+                    const ignore = (elUnder as Element).closest('[data-cursor-ignore="true"]');
+                    if (ignore) {
+                        x.set(cx);
+                        y.set(cy);
+                        width.set(DEFAULT_SIZE);
+                        height.set(DEFAULT_SIZE);
+                        borderRadius.set(DEFAULT_SIZE / 2);
+
+                        setSnapping(false);
+                        setTextMode(false);
+                        snapTargetRef.current = null;
+                        return;
+                    }
+                }
             const target = findSnapTarget(elUnder);
 
             if (target) {
@@ -166,6 +182,7 @@ export default function IPadCursor() {
         hidden && "ipad-cursor--hidden",
         pressing && "ipad-cursor--pressing",
         textMode && "ipad-cursor--text",
+        snapping && "ipad-cursor--snapping",
     ]
         .filter(Boolean)
         .join(" ");

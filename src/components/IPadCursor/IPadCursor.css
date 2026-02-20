@@ -13,6 +13,11 @@
     transition: opacity 0.2s ease;
 }
 
+/* When the cursor snaps/morphs to an element, reduce the backdrop blur to make the shape crisper */
+.ipad-cursor--snapping {
+    backdrop-filter: blur(0.35px);
+}
+
 .ipad-cursor--hidden {
     opacity: 0;
 }

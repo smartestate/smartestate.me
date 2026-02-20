@@ -1,31 +1,38 @@
-import { useState, useCallback } from "react";
-import Navbar from "@/components/landing/Navbar";
+import { useEffect } from "react";
 import Hero from "@/components/landing/Hero";
 import HowItWorks from "@/components/landing/HowItWorks";
 import FeatureGallery from "@/components/landing/FeatureGallery";
 import Team from "@/components/landing/Team";
 import FAQ from "@/components/landing/FAQ";
-import Footer from "@/components/landing/Footer";
-
-export default function Index() {
-  const [waitlistOpen, setWaitlistOpen] = useState(false);
-
-  const handleJoinWaitlistClick = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => setWaitlistOpen(true), 400);
-  }, []);
-
+// import Footer from "@/components/landing/Footer";
+export default function Index({ waitlistOpen, onWaitlistOpenChange }: { waitlistOpen: boolean; onWaitlistOpenChange: (open: boolean) => void }) {
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('waitlist') === '1') {
+          // Open waitlist after mount
+          onWaitlistOpenChange(true);
+          // clean up the param so repeated loads don't auto-open
+          params.delete('waitlist');
+          const newUrl = window.location.pathname + (params.toString() ? `?${params.toString()}` : '');
+          window.history.replaceState({}, '', newUrl);
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, [onWaitlistOpenChange]);
   return (
     <div className="min-h-screen bg-background">
-      <Navbar onJoinWaitlistClick={handleJoinWaitlistClick} />
       <main>
-        <Hero waitlistOpen={waitlistOpen} onWaitlistOpenChange={setWaitlistOpen} />
+        <Hero waitlistOpen={waitlistOpen} onWaitlistOpenChange={onWaitlistOpenChange} />
         <HowItWorks />
         <FeatureGallery />
         <Team />
         <FAQ />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

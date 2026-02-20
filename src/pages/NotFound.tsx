@@ -1,7 +1,7 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { ArrowLeft, Ghost } from "lucide-react";
+import React, { useEffect } from 'react';
+import FuzzyText from '../components/landing/FuzzyText';
+import { useLocation, Link } from 'react-router-dom';
+import { ArrowLeft, Ghost } from 'lucide-react';
 
 const NotFound = () => {
   const location = useLocation();
@@ -16,9 +16,9 @@ const NotFound = () => {
         <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
           <Ghost className="w-8 h-8 text-primary" />
         </div>
-        <h1 className="text-6xl font-bold text-foreground mb-3">404</h1>
+        <FuzzyText className="text-6xl md:text-[clamp(2rem,10vw,10rem)] font-bold text-foreground mb-3">404</FuzzyText>
         <p className="text-muted-foreground mb-8">
-          Oops! This page doesn't exist. It might have been moved or deleted.
+          Oops! This page doesn't exist.
         </p>
         <Link
           to="/"

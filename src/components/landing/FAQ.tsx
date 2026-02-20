@@ -17,7 +17,7 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="py-24 px-6">
+    <section id="faq" data-cursor-ignore="true" className="py-24 px-6">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

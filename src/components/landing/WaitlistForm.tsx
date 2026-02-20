@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PartyPopper } from "lucide-react";
+import ShinyText from "../ui/ShinyText";
 
 const companyTypes = ["Real Estate Company", "Maintenance Company", "Other"];
 
@@ -73,7 +74,17 @@ export default function WaitlistForm({ variant = "hero", externalOpen, onOpenCha
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
           >
-            Join Waitlist
+            <ShinyText
+              text="✨ Join Waitlist"
+              speed={5}
+              delay={0}
+              color="#b5b5b5"
+              shineColor="#ffffff"
+              spread={110}
+              direction="left"
+              yoyo={false}
+              pauseOnHover={false}
+            />
           </motion.button>
         ) : submitted ? (
           <motion.div

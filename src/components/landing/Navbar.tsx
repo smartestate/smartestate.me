@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import GlassSurface from "../ui/GlassSurface";
+import GlassSurface from "@/components/ui/GlassSurface";
+import ShinyText from "../ui/ShinyText";
 
 const links = [
   { label: "Docs", href: "/docs" },
   { label: "Press", href: "/press" },
-  { label: "Pricing", href: "/pricing" },
+  { label: "About", href: "/about" },
   { label: "Download", href: "/download" },
 ];
 
@@ -13,7 +14,7 @@ interface NavbarProps {
   onJoinWaitlistClick?: () => void;
 }
 
-export default function Navbar({ onJoinWaitlistClick }: NavbarProps) {
+export default function Navbar({ onJoinWaitlistClick }: NavbarProps): JSX.Element {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -25,7 +26,7 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps) {
     >
       <GlassSurface className="w-full mx-auto max-w-7xl pointer-events-auto" height={64} borderRadius={24}>
         <div className="w-full px-6 h-16 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2.5">
+          <a href="/" className="flex items-center gap-2.5">
             <img src="/logo.svg" alt="Smart Estate" className="w-8 h-8 object-cover" />
             <span className="font-semibold text-foreground text-lg">Smart Estate</span>
           </a>
@@ -44,7 +45,7 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps) {
 
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="https://github.com"
+              href="https://github.com/smartestate/smart-estate"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -61,7 +62,17 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps) {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
             >
-              Join Waitlist
+              <ShinyText
+                text="✨ Join Waitlist"
+                speed={5}
+                delay={0}
+                color="#b5b5b5"
+                shineColor="#ffffff"
+                spread={110}
+                direction="left"
+                yoyo={false}
+                pauseOnHover={false}
+              />
             </motion.button>
           </div>
         </div>
@@ -109,7 +120,17 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps) {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
             >
-              Join Waitlist
+              <ShinyText
+                text="✨ Join Waitlist"
+                speed={5}
+                delay={0}
+                color="#b5b5b5"
+                shineColor="#ffffff"
+                spread={110}
+                direction="left"
+                yoyo={false}
+                pauseOnHover={false}
+              />
             </motion.button>
           </div>
         </motion.div>

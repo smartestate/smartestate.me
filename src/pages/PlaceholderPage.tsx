@@ -1,4 +1,4 @@
-import { useLocation, Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowLeft, Construction } from "lucide-react";
 
 const pageTitles: Record<string, string> = {
@@ -7,16 +7,15 @@ const pageTitles: Record<string, string> = {
   "/changelog": "Changelog",
   "/releases": "Releases",
   "/press": "Press",
-  "/pricing": "Pricing",
   "/updates": "Updates",
   "/about": "About",
   "/privacy": "Privacy Policy",
   "/terms": "Terms of Service",
 };
 
-export default function PlaceholderPage() {
+export default function PlaceholderPage(): JSX.Element {
   const { pathname } = useLocation();
-  const title = pageTitles[pathname] || "Page";
+  const title = pageTitles[pathname] ?? "Page";
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6">

@@ -1,0 +1,21 @@
+.shiny-text {
+  display: inline-block;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-position: 150% center;
+  animation-name: shiny-move;
+}
+
+.shiny-text--pause-on-hover:hover {
+  animation-play-state: paused !important;
+}
+
+@keyframes shiny-move {
+  0% {
+    background-position: 150% center;
+  }
+  100% {
+    background-position: -50% center;
+  }
+}
