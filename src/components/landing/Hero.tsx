@@ -1,7 +1,6 @@
 import { useRef, useState, useCallback, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import WaitlistForm from "./WaitlistForm";
-import VideoModal from "./VideoModal";
 import BlurText from "./BlurText";
 import GradientText from "@/components/ui/GradientText";
 
@@ -125,63 +124,7 @@ export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) 
         </motion.div>
       </section>
 
-      {/* Screen 2 — Video */}
-      <section className="min-h-screen flex items-center justify-center px-6" ref={videoRef}>
-        <motion.div
-          ref={cardRef}
-          className="relative rounded-2xl bg-card border border-border overflow-hidden aspect-video cursor-pointer"
-          initial={{ opacity: 0, width: isSmallScreen ? "90vw" : "20vw" }}
-          animate={{
-            // opacity slightly improves visibility; width driven by scrollT
-            opacity: 0.95,
-            width: isSmallScreen ? `90vw` : `${20 + scrollT * 75}vw`,
-          }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-          onMouseEnter={() => {
-            setHovering(true);
-            document.documentElement.classList.add("hide-ipad-cursor");
-          }}
-          onMouseLeave={() => {
-            setHovering(false);
-            document.documentElement.classList.remove("hide-ipad-cursor");
-          }}
-          onMouseMove={handleMouseMove}
-          onClick={() => setModalOpen(true)}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent to-primary/5" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="hsl(245,90%,65%)" className="ml-1">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </div>
-
-          {hovering && (
-            <motion.div
-              className="hidden lg:flex absolute pointer-events-none items-center gap-2 bg-foreground text-background rounded-full px-4 py-2 text-xs font-medium shadow-lg"
-              animate={{ x: cursorPos.x - 50, y: cursorPos.y - 20 }}
-              transition={{ type: "spring", damping: 20, stiffness: 200, mass: 0.5 }}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              Play intro
-            </motion.div>
-          )}
-
-          <div className="lg:hidden absolute bottom-4 left-1/2 -translate-x-1/2">
-            <div className="flex items-center gap-2 bg-foreground text-background rounded-full px-4 py-2 text-xs font-medium">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              Play intro
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      <VideoModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      {/* Video removed for production build */}
     </>
   );
 }

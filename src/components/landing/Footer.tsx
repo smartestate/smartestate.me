@@ -12,26 +12,10 @@ export default function Footer(): JSX.Element {
         <div className="flex gap-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
             <div className="space-y-3">
-              {[
-                { label: "Download", to: "/download" },
-                { label: "Product", to: "/#product" },
-                { label: "Docs", to: "/docs" },
-              ].map((l) => (
-                <Link key={l.label} to={l.to} className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  {l.label}
-                </Link>
-              ))}
+              {/* Links removed for production build */}
             </div>
             <div className="space-y-3">
-              {[
-                { label: "About", to: "/about" },
-                { label: "Privacy", to: "/privacy" },
-                { label: "Terms", to: "/terms" },
-              ].map((l) => (
-                <Link key={l.label} to={l.to} className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  {l.label}
-                </Link>
-              ))}
+              {/* Links removed for production build */}
             </div>
           </div>
         </div>

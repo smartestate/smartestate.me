@@ -2,14 +2,8 @@ import { useCallback, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import About from "./pages/About";
-import Docs from "./pages/Docs";
 import Index from "./pages/Index";
-import Downloads from "./pages/Download";
 import NotFound from "./pages/NotFound";
-import Product from "./pages/Product";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
 import Team from "./pages/Team";
 
 import Footer from "@/components/landing/Footer";
@@ -48,13 +42,7 @@ function App(): JSX.Element {
           <Navbar onJoinWaitlistClick={handleJoinWaitlistClick} />
           <Routes>
             <Route path="/" element={<Index waitlistOpen={waitlistOpen} onWaitlistOpenChange={setWaitlistOpen} />} />
-            <Route path="/download" element={<Downloads />} />
-            <Route path="/about" element={<About />} />
             <Route path="/team" element={<Team />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/docs" element={<Docs />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

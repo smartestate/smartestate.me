@@ -3,11 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import GlassSurface from "@/components/ui/GlassSurface";
 import ShinyText from "../ui/ShinyText";
 
-const links = [
-  { label: "Docs", href: "/docs" },
-  { label: "About", href: "/about" },
-  { label: "Download", href: "/download" },
-];
+const links: { label: string; href: string }[] = [];
 
 interface NavbarProps {
   onJoinWaitlistClick?: () => void;
