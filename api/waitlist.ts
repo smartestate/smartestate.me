@@ -38,6 +38,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).send({ error: 'Method Not Allowed' });
   }
 
+  // Simple secret token protection. If `WAITLIST_SECRET` is set, require the
+  // incoming header `x-waitlist-token` or query `token` to match.
+  const secret = process.env.WAITLIST_SECRET;
+  if (secret) {
+    const incoming = (req.headers['x-waitlist-token'] as string) || req.query?.token;
+    if (!incoming || incoming !== secret) {
+      console.warn('[waitlist webhook] missing/invalid token');
+      return res.status(401).json({ ok: false, error: 'unauthorized' });
+    }
+  }
+
   try {
     const payload = parseBody(req) || {};
     console.log('[waitlist webhook] parsed payload:', JSON.stringify(payload));
