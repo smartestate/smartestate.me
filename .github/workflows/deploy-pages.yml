@@ -1,0 +1,54 @@
+name: Deploy Pages to separate repo
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Pages repo
+        env:
+          PAGES_REPO: ${{ secrets.PAGES_REPO }} # format: owner/repo (e.g. youruser/smartestate-pages)
+          PAGES_DEPLOY_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }} # PAT with repo:status,repo_deployment,public_repo (or full repo access)
+          PAGES_CUSTOM_DOMAIN: ${{ secrets.PAGES_CUSTOM_DOMAIN || '' }}
+        run: |
+          set -e
+          TMPDIR=$(mktemp -d)
+          cp -r dist/* "$TMPDIR"
+          cd "$TMPDIR"
+          # If a custom domain secret is provided, write a CNAME file so Pages will pick it up
+          if [ -n "$PAGES_CUSTOM_DOMAIN" ]; then
+            echo "$PAGES_CUSTOM_DOMAIN" > CNAME
+          fi
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Deploy static site from $GITHUB_REPOSITORY@$GITHUB_SHA"
+          # Force-push to gh-pages branch of the target repo
+          git push --force "https://x-access-token:${PAGES_DEPLOY_TOKEN}@github.com/${PAGES_REPO}.git" HEAD:gh-pages
+
+      - name: Done
+        run: echo "Pages deployed to ${PAGES_REPO} (gh-pages branch)"
+
+# NOTES:
+# - Before this workflow can run successfully, add the following repository secrets to THIS repo:
+#   - PAGES_REPO: the full target repo name (owner/repo) where the pages should be published (must include 'smartestate').
+#   - PAGES_DEPLOY_TOKEN: a Personal Access Token (classic) with permission to push to the target repo.
+# - The workflow force-pushes the contents of `dist/` to the `gh-pages` branch of the target repo.
