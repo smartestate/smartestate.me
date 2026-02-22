@@ -4,9 +4,7 @@ import { ArrowLeft, Construction } from "lucide-react";
 const pageTitles: Record<string, string> = {
   "/download": "Download",
   "/docs": "Documentation",
-  "/changelog": "Changelog",
   "/releases": "Releases",
-  "/press": "Press",
   "/updates": "Updates",
   "/about": "About",
   "/privacy": "Privacy Policy",

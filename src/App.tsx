@@ -7,7 +7,6 @@ import Docs from "./pages/Docs";
 import Index from "./pages/Index";
 import Downloads from "./pages/Download";
 import NotFound from "./pages/NotFound";
-import Press from "./pages/Press";
 import Product from "./pages/Product";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -56,7 +55,6 @@ function App(): JSX.Element {
             <Route path="/terms" element={<Terms />} />
             <Route path="/product" element={<Product />} />
             <Route path="/docs" element={<Docs />} />
-            <Route path="/press" element={<Press />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

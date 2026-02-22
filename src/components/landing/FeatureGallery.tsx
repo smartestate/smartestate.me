@@ -21,16 +21,7 @@ export default function FeatureGallery() {
   return (
     <section id="features" className="py-8 px-6">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          style={{ opacity: 0 }}
-          className="text-center mb-8"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Features</h2>
-          <p className="text-muted-foreground text-base">Everything you need for modern property maintenance.</p>
-        </motion.div>
+        {/* Heading intentionally removed as requested */}
 
           {/* headings stay constrained */}
       </div>

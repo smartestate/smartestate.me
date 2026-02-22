@@ -10,30 +10,30 @@ export default function Footer(): JSX.Element {
           <h3 className="text-3xl md:text-4xl font-bold text-foreground">Property maintenance, reimagined</h3>
         </div>
         <div className="flex gap-16">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
-              <div className="space-y-3">
-                {[
-                  { label: "Download", to: "/download" },
-                  { label: "Docs", to: "/docs" },
-                  { label: "Press", to: "/press" },
-                ].map((l) => (
-                  <Link key={l.label} to={l.to} className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    {l.label}
-                  </Link>
-                ))}
-              </div>
-              <div className="space-y-3">
-                {[
-                  { label: "About", to: "/about" },
-                  { label: "Privacy", to: "/privacy" },
-                  { label: "Terms", to: "/terms" },
-                ].map((l) => (
-                  <Link key={l.label} to={l.to} className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    {l.label}
-                  </Link>
-                ))}
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+            <div className="space-y-3">
+              {[
+                { label: "Download", to: "/download" },
+                { label: "Product", to: "/#product" },
+                { label: "Docs", to: "/docs" },
+              ].map((l) => (
+                <Link key={l.label} to={l.to} className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  {l.label}
+                </Link>
+              ))}
             </div>
+            <div className="space-y-3">
+              {[
+                { label: "About", to: "/about" },
+                { label: "Privacy", to: "/privacy" },
+                { label: "Terms", to: "/terms" },
+              ].map((l) => (
+                <Link key={l.label} to={l.to} className="block text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 

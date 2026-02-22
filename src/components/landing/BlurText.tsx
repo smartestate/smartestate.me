@@ -28,7 +28,7 @@ export default function BlurText({
 
   const child = {
     hidden: { opacity: 0, y: -6, filter: "blur(6px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.45, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.45 } },
   };
 
   // If a highlight substring is given, split into three segments

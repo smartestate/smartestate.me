@@ -1,0 +1,62 @@
+.animated-gradient-text {
+  display: inline-block;
+  position: relative;
+  max-width: fit-content;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.animated-gradient-text.with-border {
+  padding: 0.25rem 0.6rem;
+}
+
+.animated-gradient-text .gradient-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+.animated-gradient-text .text-content {
+  position: relative;
+  z-index: 1;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  display: inline-block;
+  /* ensure descenders are visible */
+  padding-bottom: 0.08em;
+  line-height: 1.02;
+  /* animation settings: duration/direction set inline from component */
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* animate background-position to create gradient motion */
+@keyframes gradient-move-horizontal {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes gradient-move-vertical {
+  0% { background-position: 50% 0%; }
+  100% { background-position: 50% 100%; }
+}
+
+/* Default uses horizontal animation; animation-duration is set inline via style */
+.animated-gradient-text {
+  animation-name: gradient-move-horizontal;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* allow pause on hover via data attribute */
+.animated-gradient-text[data-pause-on-hover="true"]:hover {
+  animation-play-state: paused;
+}

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Smartphone, Bot, Wrench, CheckCircle } from "lucide-react";
+import DecryptedText from "@/components/ui/DecryptedText";
 
 const steps = [
   { num: "01", title: "Tenants submit issue", desc: "Text, photo, or video — any format works.", icon: Smartphone },
@@ -10,7 +11,8 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 px-6">
+    <>
+      <section id="how-it-works" className="py-24 px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -51,6 +53,21 @@ export default function HowItWorks() {
           ))}
         </div>
       </div>
-    </section>
+      </section>
+      <div className="mt-8 text-center">
+        <div className="max-w-3xl mx-auto px-6 py-8">
+          <DecryptedText
+            text="End-to-end encrypted. Built for full data privacy."
+            animateOn="view"
+            revealDirection="start"
+            sequential
+            speed={30}
+            maxIterations={12}
+            className="text-4xl md:text-5xl font-bold text-foreground leading-[1.08]"
+            encryptedClassName="text-muted-foreground font-mono tracking-widest"
+          />
+        </div>
+      </div>
+    </>
   );
 }
