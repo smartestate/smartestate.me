@@ -18,7 +18,7 @@ interface ShinyTextProps {
 const ShinyText: React.FC<ShinyTextProps> = ({
   text,
   disabled = false,
-  speed = 2,
+  speed = 10,
   className = '',
   color = '#b5b5b5',
   shineColor = '#ffffff',

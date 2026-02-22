@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import WaitlistForm from "./WaitlistForm";
 import VideoModal from "./VideoModal";
 import BlurText from "./BlurText";
+import GradientText from "@/components/ui/GradientText";
 
 interface HeroProps {
   waitlistOpen?: boolean;
@@ -10,6 +11,15 @@ interface HeroProps {
 }
 
 export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) {
+  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 640px)");
+    const handler = () => setIsSmallScreen(mq.matches);
+    handler();
+    mq.addEventListener?.("change", handler);
+    return () => mq.removeEventListener?.("change", handler);
+  }, []);
   const videoRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(videoRef, { once: true, margin: "-100px" });
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -87,19 +97,20 @@ export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) 
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             Now under development
           </div>
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[1.08] mb-6">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[1.08] mb-6">
             <div className="leading-[1.08]">
               <div>
                 <BlurText text={"Property"} className={"inline-block"} delay={0.02} />
               </div>
               <div>
-                <BlurText
-                  text={"maintenance, reimagined"}
-                  highlight={"reimagined"}
-                  className={"inline-block"}
-                  highlightClassName={"text-gradient inline-block"}
-                  delay={0.08}
-                />
+                <span className="inline-block">
+                  <BlurText text={"maintenance, "} className={"inline-block"} delay={0.08} />
+                </span>
+                <span className="inline-block ml-1">
+                  <GradientText colors={["#6155f5", "#99b1ff", "#bcb7fb"]} animationSpeed={8} showBorder={false} className="inline-block">
+                    reimagined
+                  </GradientText>
+                </span>
               </div>
             </div>
           </h1>
@@ -107,13 +118,8 @@ export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) 
             Smart Estate uses AI to triage, assign, and track maintenance
             requests — so your team can respond faster and tenants stay happier.
           </p>
+          
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#how-it-works"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              See how it works →
-            </a>
             <WaitlistForm variant="hero" externalOpen={waitlistOpen} onOpenChange={onWaitlistOpenChange} />
           </div>
         </motion.div>
@@ -124,11 +130,11 @@ export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) 
         <motion.div
           ref={cardRef}
           className="relative rounded-2xl bg-card border border-border overflow-hidden aspect-video cursor-pointer"
-          initial={{ opacity: 0, width: "20vw" }}
+          initial={{ opacity: 0, width: isSmallScreen ? "90vw" : "20vw" }}
           animate={{
             // opacity slightly improves visibility; width driven by scrollT
             opacity: 0.95,
-            width: `${20 + scrollT * 75}vw`,
+            width: isSmallScreen ? `90vw` : `${20 + scrollT * 75}vw`,
           }}
           transition={{ duration: 0.25, ease: "easeOut" }}
           onMouseEnter={() => {

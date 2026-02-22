@@ -176,6 +176,17 @@ export default function IPadCursor() {
         };
     }, [handleMouseMove, handleScroll, handleMouseDown, handleMouseUp, handleMouseLeave, handleMouseEnter]);
 
+        // Listen for external requests to recompute cursor state (useful after layout animations)
+        useEffect(() => {
+            const handler = () => {
+                const { x: mx, y: my } = mousePos.current;
+                if (mx === 0 && my === 0) return;
+                updateCursorAt(mx, my);
+            };
+            document.addEventListener("recompute-cursor", handler);
+            return () => document.removeEventListener("recompute-cursor", handler);
+        }, [updateCursorAt]);
+
     // Build CSS class names
     const classNames = [
         "ipad-cursor",

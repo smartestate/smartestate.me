@@ -63,10 +63,9 @@ export default function WaitlistForm({ variant = "hero", externalOpen, onOpenCha
   return (
     <div ref={ref} className="relative">
       <AnimatePresence mode="wait">
-        {!isOpen && !submitted ? (
+          {!isOpen && !submitted ? (
           <motion.button
             key="btn"
-            layoutId={`waitlist-${variant}`}
             onClick={() => setIsOpen(true)}
             className={`rounded-full bg-primary text-primary-foreground font-medium cursor-pointer whitespace-nowrap ${
               isNav ? "px-5 py-2 text-sm" : "px-8 py-3.5 text-base"
@@ -89,7 +88,6 @@ export default function WaitlistForm({ variant = "hero", externalOpen, onOpenCha
         ) : submitted ? (
           <motion.div
             key="success"
-            layoutId={`waitlist-${variant}`}
             className="relative overflow-hidden rounded-2xl bg-primary text-primary-foreground px-8 py-4 text-center font-medium flex items-center justify-center gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -103,7 +101,6 @@ export default function WaitlistForm({ variant = "hero", externalOpen, onOpenCha
         ) : (
           <motion.form
             key="form"
-            layoutId={`waitlist-${variant}`}
             onSubmit={handleSubmit}
             className="rounded-2xl bg-card border border-border shadow-xl p-5 space-y-3"
             initial={{ width: isNav ? 140 : 180 }}
@@ -114,11 +111,19 @@ export default function WaitlistForm({ variant = "hero", externalOpen, onOpenCha
               <span className="text-sm font-semibold text-foreground">Join the waitlist</span>
               <button
                 type="button"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  // Give layout a moment to update, then ask the global cursor to recompute
+                  setTimeout(() => document.dispatchEvent(new Event("recompute-cursor")), 40);
+                }}
                 className="text-muted-foreground hover:text-foreground text-lg leading-none cursor-pointer"
               >
                 ×
               </button>
+              {/* When closing, ask the global cursor to recompute its snap target
+                  after the layout change so the custom cursor doesn't stay
+                  stuck in the snapped (ballooned) state. */}
+              
             </div>
             <motion.input
               initial={{ opacity: 0, y: 8 }}

@@ -39,11 +39,12 @@ const Downloads: React.FC = () => {
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           Now under development
         </div>
-        <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">Software</h2>
-          <p className="text-sm text-muted-foreground mb-4">Desktop installers and packages for your operating system.</p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="flex flex-col-reverse sm:flex-col">
+              <section>
+                <h2 className="text-xl font-semibold text-foreground mb-3">Software</h2>
+                <p className="text-sm text-muted-foreground mb-4">Desktop installers and packages for your operating system.</p>
+  
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <a
               href={urls.software.windows}
               aria-disabled="true"
@@ -83,9 +84,8 @@ const Downloads: React.FC = () => {
 
         </section>
 
-        <section className="mb-12 hidden sm:block mt-4">
+        <section className="mb-12 mt-4">
           <h2 className="text-xl font-semibold text-foreground mb-3">App</h2>
-          <p className="text-sm text-muted-foreground mb-4">Get the mobile app for your device.</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <a
@@ -96,7 +96,7 @@ const Downloads: React.FC = () => {
               className={`p-4 rounded-lg border border-border bg-card text-center opacity-60 pointer-events-none ${os === 'ios' ? 'ring-2 ring-primary' : ''}`}
             >
               <img src="/icons/apple-svgrepo-com.svg" alt="App Store" className="mx-auto w-8 h-8 mb-2" />
-              <div className="font-semibold">iOS (App Store)</div>
+              <div className="font-semibold">iOS</div>
               <div className="text-sm text-muted-foreground mt-1">App Store</div>
             </a>
 
@@ -108,12 +108,13 @@ const Downloads: React.FC = () => {
               className={`p-4 rounded-lg border border-border bg-card text-center opacity-60 pointer-events-none ${os === 'android' ? 'ring-2 ring-primary' : ''}`}
             >
               <img src="/icons/google-play-svgrepo-com.svg" alt="Google Play" className="mx-auto w-8 h-8 mb-2" />
-              <div className="font-semibold">Android (Google Play)</div>
+              <div className="font-semibold">Android</div>
               <div className="text-sm text-muted-foreground mt-1">Google Play</div>
             </a>
 
           </div>
         </section>
+            </div>
 
       </div>
     </div>
