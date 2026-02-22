@@ -3,11 +3,11 @@ import GlassSurface from "@/components/ui/GlassSurface";
 
 const members = [
   { name: "Sahil Saleem", role: "Project Lead, UI/UX" },
+  { name: "Aaron Braganza", role: "AI/ML Engineer" },
+  { name: "Inigo Monson", role: "Back-end Developer" },
+  { name: "Bhoomika Sangtani", role: "AI/ML Engineer" },
   { name: "Shreyans Saha", role: "Back-end Developer" },
   { name: "Muhammad Moiz", role: "Front-end Developer" },
-  { name: "Inigo Monson", role: "Back-end Developer" },
-  { name: "Aaron Braganza", role: "AI/ML Engineer" },
-  { name: "Bhoomika Sangtani", role: "AI/ML Engineer" },
 ];
 
 export default function Team() {
