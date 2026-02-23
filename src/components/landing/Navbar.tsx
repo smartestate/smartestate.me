@@ -4,7 +4,7 @@ import GlassSurface from "@/components/ui/GlassSurface";
 import ShinyText from "../ui/ShinyText";
 
 const links: { label: string; href: string }[] = [
-  { label: "Market Research", href: "/market-research-survey" },
+  { label: "Market Research Survey", href: "/market-research-survey" },
 ];
 
 interface NavbarProps {
@@ -48,7 +48,7 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps): JSX.Elemen
               whileTap={{ scale: 0.97 }}
             >
               <ShinyText
-                text="Research Survey"
+                text="Market Research Survey"
                 speed={5}
                 delay={0}
                 color="#b5b5b5"
@@ -112,7 +112,7 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps): JSX.Elemen
                     whileTap={{ scale: 0.97 }}
                   >
                     <ShinyText
-                      text="Research Survey"
+                      text="Market Research Survey"
                       speed={5}
                       delay={0}
                       color="#b5b5b5"
