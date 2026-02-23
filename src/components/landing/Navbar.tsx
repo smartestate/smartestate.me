@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GlassSurface from "@/components/ui/GlassSurface";
 import ShinyText from "../ui/ShinyText";
+import { NavLink } from "@/components/NavLink";
 
 const links: { label: string; href: string }[] = [
   { label: "Market Research Survey", href: "/market-research-survey" },
@@ -30,13 +31,14 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps): JSX.Elemen
 
           <div className="hidden md:flex items-center gap-8">
             {links.map((l) => (
-              <a
+              <NavLink
                 key={l.href}
-                href={l.href}
+                to={l.href}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                activeClassName="text-primary font-medium"
               >
                 {l.label}
-              </a>
+              </NavLink>
             ))}
           </div>
 
@@ -91,14 +93,15 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps): JSX.Elemen
                 role="menu"
               >
                 {links.map((l) => (
-                  <a
+                  <NavLink
                     key={l.href}
-                    href={l.href}
+                    to={l.href}
                     onClick={() => setMobileOpen(false)}
                     className="block text-sm text-muted-foreground hover:text-foreground py-2"
+                    activeClassName="text-primary font-medium"
                   >
                     {l.label}
-                  </a>
+                  </NavLink>
                 ))}
 
                 <div className="pt-2">
