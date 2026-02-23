@@ -7,7 +7,7 @@ export default function EmbeddedWaitlist(): JSX.Element {
   const formId = (import.meta.env.VITE_YOUFORM_EMBED_FORM as string) || defaultForm;
   const baseUrl = (import.meta.env.VITE_YOUFORM_EMBED_BASE as string) || defaultBase;
   const width = (import.meta.env.VITE_YOUFORM_EMBED_WIDTH as string) || "100%";
-  const height = (import.meta.env.VITE_YOUFORM_EMBED_HEIGHT as string) || "500";
+  const height = (import.meta.env.VITE_YOUFORM_EMBED_HEIGHT as string) || "333";
 
   useEffect(() => {
     // If the page loaded with #waitlist, scroll to this element
