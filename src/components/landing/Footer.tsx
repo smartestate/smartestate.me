@@ -12,10 +12,11 @@ export default function Footer(): JSX.Element {
         <div className="flex gap-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
             <div className="space-y-3">
-              {/* Links removed for production build */}
+              <Link to="/market-research-survey" className="block text-sm text-muted-foreground hover:text-foreground">Market Research Survey</Link>
+              <Link to="/download" className="block text-sm text-muted-foreground hover:text-foreground">Downloads</Link>
             </div>
             <div className="space-y-3">
-              {/* Links removed for production build */}
+              {/* Intentionally keeping About/Docs/etc out of footer to avoid showing on production */}
             </div>
           </div>
         </div>
