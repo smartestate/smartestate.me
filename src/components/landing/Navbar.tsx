@@ -43,12 +43,13 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps): JSX.Elemen
             ))}
           </div>
 
-          <motion.button
-            onClick={onJoinWaitlistClick}
-            className="rounded-full bg-primary text-primary-foreground font-medium cursor-pointer whitespace-nowrap px-5 py-2 text-sm"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-          >
+          <div className="hidden md:flex items-center gap-3">
+            <motion.button
+              onClick={onJoinWaitlistClick}
+              className="rounded-full bg-primary text-primary-foreground font-medium cursor-pointer whitespace-nowrap px-5 py-2 text-sm"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+            >
               <ShinyText
                 text="✨ Join Waitlist"
                 speed={5}
@@ -63,7 +64,6 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps): JSX.Elemen
             </motion.button>
           </div>
 
-          {/* Mobile toggle inside surface so it sits within the expanded header */}
           <div className="absolute right-4 top-1/2 -translate-y-1/2 md:hidden z-10">
             <button
               className="text-foreground cursor-pointer bg-transparent p-2"
@@ -81,55 +81,55 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps): JSX.Elemen
           </div>
         </div>
 
-          {/* Mobile menu (placed inside the surface so the header expands) */}
-          <AnimatePresence>
-            {mobileOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.22 }}
-                className="md:hidden w-full border-t border-border mt-4 pt-4 pb-6 space-y-3 pointer-events-auto px-6"
-                role="menu"
-              >
-                {links.map((l) => (
-                  <NavLink
-                    key={l.href}
-                    to={l.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block text-sm text-muted-foreground hover:text-foreground py-2"
-                    activeClassName="text-primary font-medium"
-                  >
-                    {l.label}
-                  </NavLink>
-                ))}
+        {/* Mobile menu (placed inside the surface so the header expands) */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.22 }}
+              className="md:hidden w-full border-t border-border mt-4 pt-4 pb-6 space-y-3 pointer-events-auto px-6"
+              role="menu"
+            >
+              {links.map((l) => (
+                <NavLink
+                  key={l.href}
+                  to={l.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block text-sm text-muted-foreground hover:text-foreground py-2"
+                  activeClassName="text-primary font-medium"
+                >
+                  {l.label}
+                </NavLink>
+              ))}
 
-                <div className="pt-2">
-                  <motion.button
-                    onClick={() => {
-                      setMobileOpen(false);
-                      onJoinWaitlistClick?.();
-                    }}
-                    className="rounded-full bg-primary text-primary-foreground font-medium cursor-pointer whitespace-nowrap px-4 py-2 text-sm"
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    <ShinyText
-                      text="✨ Join Waitlist"
-                      speed={5}
-                      delay={0}
-                      color="#b5b5b5"
-                      shineColor="#ffffff"
-                      spread={110}
-                      direction="left"
-                      yoyo={false}
-                      pauseOnHover={false}
-                    />
-                  </motion.button>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              <div className="pt-2">
+                <motion.button
+                  onClick={() => {
+                    setMobileOpen(false);
+                    onJoinWaitlistClick?.();
+                  }}
+                  className="rounded-full bg-primary text-primary-foreground font-medium cursor-pointer whitespace-nowrap px-4 py-2 text-sm"
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <ShinyText
+                    text="✨ Join Waitlist"
+                    speed={5}
+                    delay={0}
+                    color="#b5b5b5"
+                    shineColor="#ffffff"
+                    spread={110}
+                    direction="left"
+                    yoyo={false}
+                    pauseOnHover={false}
+                  />
+                </motion.button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </GlassSurface>
 
       
