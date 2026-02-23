@@ -23,13 +23,17 @@ function App(): JSX.Element {
   const handleJoinWaitlistClick = useCallback((): void => {
     const isBrowser = typeof window !== "undefined";
     if (isBrowser && window.location.pathname !== "/") {
-      // Navigate to home and indicate we want the waitlist open
-      window.location.href = "/?waitlist=1";
+      // Navigate to home and include hash so Index scrolls to the embed
+      window.location.href = "/#waitlist";
       return;
     }
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => setWaitlistOpen(true), 400);
+    // If already on the homepage, scroll to the embedded form
+    const el = document.getElementById("waitlist-embed");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
   }, []);
 
   return (
