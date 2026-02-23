@@ -41,7 +41,7 @@ export default function Index({ waitlistOpen, onWaitlistOpenChange }: { waitlist
         <div className="fixed right-6 bottom-6 w-80 max-w-xs bg-white/95 border border-border rounded-lg shadow-lg p-3 z-50">
           <div className="flex items-start gap-3">
             <div className="flex-1 text-sm">
-              We're running a short market research survey to help shape Smart Estate. Your feedback will directly influence features and roadmap.
+              This is a new product — we're running a short market research survey to help shape Smart Estate. Your feedback will directly influence features and roadmap.
             </div>
             <button aria-label="Close notice" onClick={() => setShowSurveyNotice(false)} className="text-muted-foreground">
               ✕

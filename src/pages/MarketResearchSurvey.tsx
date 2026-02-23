@@ -12,8 +12,8 @@ export default function MarketResearchSurvey(): JSX.Element {
   }, []);
 
   return (
-    <main className="min-h-screen pt-24">
-      <div className="container mx-auto py-8 px-4">
+    <main className="min-h-screen">
+      <div className="container mx-auto pt-24 py-6 px-4">
         <div id="market-research-embed">
           <div data-youform-embed data-form="xehdqwp1" data-base-url="https://app.youform.com" data-width="100%" data-height="700"></div>
         </div>

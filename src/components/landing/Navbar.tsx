@@ -4,7 +4,7 @@ import GlassSurface from "@/components/ui/GlassSurface";
 import ShinyText from "../ui/ShinyText";
 
 const links: { label: string; href: string }[] = [
-  { label: "Market Research Survey", href: "/market-research-survey" },
+  { label: "Market Research", href: "/market-research-survey" },
 ];
 
 interface NavbarProps {
@@ -42,7 +42,7 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps): JSX.Elemen
 
           <div className="hidden md:flex items-center gap-3">
             <motion.button
-              onClick={() => { window.location.href = "/market-research-survey"; }}
+              onClick={() => (window.location.href = "/market-research-survey")}
               className="rounded-full bg-primary text-primary-foreground font-medium cursor-pointer whitespace-nowrap px-5 py-2 text-sm"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}

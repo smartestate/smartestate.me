@@ -8,6 +8,7 @@ import Team from "./pages/Team";
 import MarketResearchSurvey from "./pages/MarketResearchSurvey";
 
 import Footer from "@/components/landing/Footer";
+import SurveyNotification from "@/components/landing/SurveyNotification";
 import IPadCursor from "./components/IPadCursor/IPadCursor";
 import Navbar from "@/components/landing/Navbar";
 import { Toaster } from "@/components/ui/toaster";
@@ -55,6 +56,7 @@ function App(): JSX.Element {
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          <SurveyNotification />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
