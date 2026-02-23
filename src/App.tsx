@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Team from "./pages/Team";
+import MarketResearchSurvey from "./pages/MarketResearchSurvey";
 
 import Footer from "@/components/landing/Footer";
 import IPadCursor from "./components/IPadCursor/IPadCursor";
@@ -50,6 +51,7 @@ function App(): JSX.Element {
           <Routes>
             <Route path="/" element={<Index waitlistOpen={waitlistOpen} onWaitlistOpenChange={setWaitlistOpen} />} />
             <Route path="/team" element={<Team />} />
+            <Route path="/market-research-survey" element={<MarketResearchSurvey />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
