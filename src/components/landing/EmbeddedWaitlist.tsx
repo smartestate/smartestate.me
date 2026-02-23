@@ -7,7 +7,7 @@ export default function EmbeddedWaitlist(): JSX.Element {
   const formId = (import.meta.env.VITE_YOUFORM_EMBED_FORM as string) || defaultForm;
   const baseUrl = (import.meta.env.VITE_YOUFORM_EMBED_BASE as string) || defaultBase;
   const width = (import.meta.env.VITE_YOUFORM_EMBED_WIDTH as string) || "100%";
-  const height = (import.meta.env.VITE_YOUFORM_EMBED_HEIGHT as string) || "700";
+  const height = (import.meta.env.VITE_YOUFORM_EMBED_HEIGHT as string) || "500";
 
   useEffect(() => {
     // If the page loaded with #waitlist, scroll to this element
@@ -29,7 +29,7 @@ export default function EmbeddedWaitlist(): JSX.Element {
   }, [baseUrl]);
 
   return (
-    <section id="waitlist-embed" className="w-full max-w-3xl mx-auto px-6 py-12">
+    <section id="waitlist-embed" className="w-full max-w-7xl mx-auto px-6 py-8">
       <h2 className="text-2xl font-semibold mb-4">Join the waitlist</h2>
       <div className="bg-card border border-border rounded-2xl p-6">
         <div
