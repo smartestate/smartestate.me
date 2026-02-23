@@ -5,6 +5,7 @@
     { "src": "api/**/*.ts", "use": "@vercel/node" }
   ],
   "routes": [
+    { "src": "/api/waitlist", "dest": "/api/waitlist.ts" },
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
