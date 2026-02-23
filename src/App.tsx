@@ -28,10 +28,13 @@ function App(): JSX.Element {
       return;
     }
 
-    // If already on the homepage, scroll to the embedded form
+    // If already on the homepage, scroll to the embedded form and center it
     const el = document.getElementById("waitlist-embed");
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      const rect = el.getBoundingClientRect();
+      const elTop = window.scrollY + rect.top;
+      const target = Math.max(0, Math.round(elTop - window.innerHeight / 2 + rect.height / 2));
+      window.scrollTo({ top: target, behavior: "smooth" });
       return;
     }
   }, []);

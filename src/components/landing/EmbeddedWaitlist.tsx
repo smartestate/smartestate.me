@@ -14,7 +14,13 @@ export default function EmbeddedWaitlist(): JSX.Element {
     if (typeof window === "undefined") return;
     if (window.location.hash === "#waitlist") {
       const el = document.getElementById("waitlist-embed");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
+      if (el) {
+        // Center the element in the viewport so CTA is visible
+        const rect = el.getBoundingClientRect();
+        const elTop = window.scrollY + rect.top;
+        const target = Math.max(0, Math.round(elTop - window.innerHeight / 2 + rect.height / 2));
+        window.scrollTo({ top: target, behavior: "smooth" });
+      }
       history.replaceState({}, "", window.location.pathname + window.location.search);
     }
 
