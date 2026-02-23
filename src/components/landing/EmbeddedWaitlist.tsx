@@ -24,27 +24,24 @@ export default function EmbeddedWaitlist(): JSX.Element {
       history.replaceState({}, "", window.location.pathname + window.location.search);
     }
 
-    // Load YouForm embed script once
-    const scriptSrc = `${baseUrl}/embed.js`;
-    if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
-      const s = document.createElement("script");
-      s.src = scriptSrc;
-      s.async = true;
-      document.body.appendChild(s);
-    }
+    // No script required — we'll embed via iframe so the form loads reliably in SPAs
   }, [baseUrl]);
 
   return (
     <section id="waitlist-embed" className="w-full max-w-7xl mx-auto px-6 py-8">
       <h2 className="text-2xl font-semibold mb-4">Join the waitlist</h2>
       <div className="bg-card border border-border rounded-2xl p-6">
-        <div
-          data-youform-embed
-          data-form={formId}
-          data-base-url={baseUrl}
-          data-width={width}
-          data-height={height}
-        ></div>
+        <iframe
+          src={`${baseUrl}/forms/${formId}`}
+          loading="lazy"
+          width="100%"
+          height={700}
+          frameBorder={0}
+          marginHeight={0}
+          marginWidth={0}
+          style={{ border: "none" }}
+          title="Join the waitlist"
+        />
       </div>
     </section>
   );
