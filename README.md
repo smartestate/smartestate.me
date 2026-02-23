@@ -30,7 +30,7 @@ npm run build
 
 ## Deploy
 
-This project can be deployed to any static host (Netlify, Vercel, Cloudflare Pages). Build with `npm run build` and deploy the contents of the `dist` folder.
+This project can be deployed to any static host (Netlify, Cloudflare Pages). Build with `npm run build` and deploy the contents of the `dist` folder.
 
 ## Contributing
 

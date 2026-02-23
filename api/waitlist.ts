@@ -1,7 +1,7 @@
 function parseBody(req: any) {
   const ct = req.headers['content-type'] || '';
 
-  // If body is already an object (Vercel / body parser), return it.
+  // If body is already an object (parsed by the host), return it.
   if (req.body && typeof req.body === 'object') return req.body;
 
   // If JSON string
