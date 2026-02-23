@@ -37,6 +37,5 @@ coverage/
 Thumbs.db
 ehthumbs.db
 Icon?
-
-.vercel
 .env*.local
+

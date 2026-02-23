@@ -1,6 +1,4 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-
-function parseBody(req: VercelRequest) {
+function parseBody(req: any) {
   const ct = req.headers['content-type'] || '';
 
   // If body is already an object (Vercel / body parser), return it.
@@ -32,7 +30,7 @@ function parseBody(req: VercelRequest) {
   return req.body;
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).send({ error: 'Method Not Allowed' });
