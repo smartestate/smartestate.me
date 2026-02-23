@@ -1,6 +1,6 @@
 import { useRef, useState, useCallback, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import WaitlistForm from "./WaitlistForm";
+// Waitlist is shown on first scroll instead of inside the hero
 import BlurText from "./BlurText";
 import GradientText from "@/components/ui/GradientText";
 
@@ -119,7 +119,7 @@ export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) 
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <WaitlistForm variant="hero" externalOpen={waitlistOpen} onOpenChange={onWaitlistOpenChange} />
+            {/* Intentionally left blank: waitlist now appears after first scroll */}
           </div>
         </motion.div>
       </section>

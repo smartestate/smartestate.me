@@ -4,6 +4,7 @@ import HowItWorks from "@/components/landing/HowItWorks";
 import FeatureGallery from "@/components/landing/FeatureGallery";
 import Team from "@/components/landing/Team";
 import FAQ from "@/components/landing/FAQ";
+import ScrollWaitlist from "@/components/landing/ScrollWaitlist";
 // import Footer from "@/components/landing/Footer";
 export default function Index({ waitlistOpen, onWaitlistOpenChange }: { waitlistOpen: boolean; onWaitlistOpenChange: (open: boolean) => void }) {
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function Index({ waitlistOpen, onWaitlistOpenChange }: { waitlist
     <div className="min-h-screen bg-background">
       <main>
         <Hero waitlistOpen={waitlistOpen} onWaitlistOpenChange={onWaitlistOpenChange} />
+        <ScrollWaitlist externalOpen={waitlistOpen} onOpenChange={onWaitlistOpenChange} />
         <HowItWorks />
         <FeatureGallery />
         <Team />
