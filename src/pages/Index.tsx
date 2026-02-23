@@ -28,11 +28,11 @@ export default function Index({ waitlistOpen, onWaitlistOpenChange }: { waitlist
     <div className="min-h-screen bg-background">
       <main>
         <Hero waitlistOpen={waitlistOpen} onWaitlistOpenChange={onWaitlistOpenChange} />
-        <EmbeddedWaitlist />
         <HowItWorks />
         <FeatureGallery />
         <Team />
         <FAQ />
+        <EmbeddedWaitlist />
       </main>
       {/* <Footer /> */}
     </div>
