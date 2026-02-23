@@ -22,9 +22,9 @@ export default function Footer(): JSX.Element {
       </div>
 
       {/* Giant wordmark */}
-      <div className="px-6 pb-4 overflow-hidden" style={{ height: 300 }}>
-        <div className="max-w-7xl mx-auto h-full">
-          <div style={{ position: 'relative', height: '300px' }}>
+      <div className="px-6 pb-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div style={{ position: 'relative' }}>
             {/* TextPressure handles responsive sizing and interactive pressure */}
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
             {/* @ts-ignore */}
