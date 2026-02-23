@@ -6,6 +6,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Team from "./pages/Team";
 import MarketResearchSurvey from "./pages/MarketResearchSurvey";
+import Download from "./pages/Download";
 
 import Footer from "@/components/landing/Footer";
 import IPadCursor from "./components/IPadCursor/IPadCursor";
@@ -52,6 +53,7 @@ function App(): JSX.Element {
             <Route path="/" element={<Index waitlistOpen={waitlistOpen} onWaitlistOpenChange={setWaitlistOpen} />} />
             <Route path="/team" element={<Team />} />
             <Route path="/market-research-survey" element={<MarketResearchSurvey />} />
+            <Route path="/download" element={<Download />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

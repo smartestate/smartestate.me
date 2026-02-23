@@ -6,6 +6,7 @@ import { NavLink } from "@/components/NavLink";
 
 const links: { label: string; href: string }[] = [
   { label: "Market Research Survey", href: "/market-research-survey" },
+  { label: "Download", href: "/download" },
 ];
 
 interface NavbarProps {
