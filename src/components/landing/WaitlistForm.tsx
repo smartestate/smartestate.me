@@ -53,9 +53,47 @@ export default function WaitlistForm({ variant = "hero", externalOpen, onOpenCha
     }
   }, [submitted]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const YOUFORM_WEBHOOK = (import.meta.env.VITE_YOUFORM_WEBHOOK as string) || "";
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+
+    const payload = {
+      name: form.name,
+      email: form.email,
+      company: form.company,
+      companyType,
+    };
+
+    try {
+      if (YOUFORM_WEBHOOK) {
+        // Send as form-encoded key/value pairs which YouForm expects
+        await fetch(YOUFORM_WEBHOOK, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams(payload as Record<string, string>),
+        }).then((r) => {
+          if (!r.ok) throw new Error(`status=${r.status}`);
+        });
+      } else {
+        // No webhook configured — simulate success (local dev)
+        console.warn("VITE_YOUFORM_WEBHOOK not set — skipping remote submit");
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error("waitlist submit error", err);
+      setError("Submission failed. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const isNav = variant === "nav";
