@@ -1,30 +1,29 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import ShinyText from "@/components/ui/ShinyText";
+import EmbeddedWaitlist from "@/components/landing/EmbeddedWaitlist";
+import FeatureGallery from "@/components/landing/FeatureGallery";
+import FAQ from "@/components/landing/FAQ";
 import Hero from "@/components/landing/Hero";
 import HowItWorks from "@/components/landing/HowItWorks";
-import FeatureGallery from "@/components/landing/FeatureGallery";
+import ShinyText from "@/components/ui/ShinyText";
 import Team from "@/components/landing/Team";
-import FAQ from "@/components/landing/FAQ";
-import EmbeddedWaitlist from "@/components/landing/EmbeddedWaitlist";
-// import Footer from "@/components/landing/Footer";
-export default function Index({ waitlistOpen, onWaitlistOpenChange }: { waitlistOpen: boolean; onWaitlistOpenChange: (open: boolean) => void }) {
+
+interface IndexProps {
+  waitlistOpen: boolean;
+  onWaitlistOpenChange: (open: boolean) => void;
+}
+
+export default function Index({ waitlistOpen, onWaitlistOpenChange }: IndexProps): JSX.Element {
   const [showSurveyNotice, setShowSurveyNotice] = useState(true);
+
   useEffect(() => {
-    try {
-      if (typeof window !== 'undefined') {
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('waitlist') === '1') {
-          // Open waitlist after mount
-          onWaitlistOpenChange(true);
-          // clean up the param so repeated loads don't auto-open
-          params.delete('waitlist');
-          const newUrl = window.location.pathname + (params.toString() ? `?${params.toString()}` : '');
-          window.history.replaceState({}, '', newUrl);
-        }
-      }
-    } catch (e) {
-      // ignore
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('waitlist') === '1') {
+      onWaitlistOpenChange(true);
+      params.delete('waitlist');
+      const newUrl = window.location.pathname + (params.toString() ? `?${params.toString()}` : '');
+      window.history.replaceState({}, '', newUrl);
     }
   }, [onWaitlistOpenChange]);
   return (
