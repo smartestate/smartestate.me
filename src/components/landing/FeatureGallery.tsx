@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { Zap, Target, Shield, Eye, MessageSquareText, Brain, Users, Activity, Bell, BarChart3 } from "lucide-react";
+import { Zap, Target, MessageSquareText, Brain, Activity, Bell, BarChart3 } from "lucide-react";
 import ScrollVelocity from "./ScrollVelocity";
 
 const features = [

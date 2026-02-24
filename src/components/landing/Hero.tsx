@@ -9,8 +9,8 @@ interface HeroProps {
   onWaitlistOpenChange?: (open: boolean) => void;
 }
 
-export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) {
-  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
+export default function Hero({ waitlistOpen: _waitlistOpen, onWaitlistOpenChange: _onWaitlistOpenChange }: HeroProps) {
+  const [_isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 640px)");
@@ -20,15 +20,15 @@ export default function Hero({ waitlistOpen, onWaitlistOpenChange }: HeroProps) 
     return () => mq.removeEventListener?.("change", handler);
   }, []);
   const videoRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(videoRef, { once: true, margin: "-100px" });
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [hovering, setHovering] = useState(false);
-  const [scrollT, setScrollT] = useState(0);
-  const [modalOpen, setModalOpen] = useState(false);
+  const _isInView = useInView(videoRef, { once: true, margin: "-100px" });
+  const [_cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [hovering, _setHovering] = useState(false);
+  const [_scrollT, setScrollT] = useState(0);
+  const [_modalOpen, _setModalOpen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const lastClient = useRef({ x: 0, y: 0 });
 
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+  const _handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     lastClient.current = { x: e.clientX, y: e.clientY };

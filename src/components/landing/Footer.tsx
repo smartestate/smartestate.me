@@ -27,7 +27,7 @@ export default function Footer(): JSX.Element {
         <div className="max-w-7xl mx-auto">
           <div style={{ position: 'relative' }}>
             {/* TextPressure handles responsive sizing and interactive pressure */}
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            { }
             {/* @ts-ignore */}
             <TextPressure text="Smart Estate" minFontSize={48} textColor="rgba(17,24,39,0.2)" />
           </div>

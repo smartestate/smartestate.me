@@ -3,7 +3,7 @@ import FuzzyText from '../components/landing/FuzzyText';
 import { useLocation, Link } from 'react-router-dom';
 import { ArrowLeft, Ghost } from 'lucide-react';
 
-const NotFound = () => {
+function NotFound(): JSX.Element {
   const location = useLocation();
 
   useEffect(() => {
@@ -17,9 +17,7 @@ const NotFound = () => {
           <Ghost className="w-8 h-8 text-primary" />
         </div>
         <FuzzyText className="text-6xl md:text-[clamp(2rem,10vw,10rem)] font-bold text-foreground mb-3">404</FuzzyText>
-        <p className="text-muted-foreground mb-8">
-          Oops! This page doesn't exist.
-        </p>
+        <p className="text-muted-foreground mb-8">Oops! This page doesn't exist.</p>
         <Link
           to="/"
           className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-2.5 text-sm font-medium hover:opacity-90 transition-opacity"
@@ -30,6 +28,6 @@ const NotFound = () => {
       </div>
     </div>
   );
-};
+}
 
 export default NotFound;

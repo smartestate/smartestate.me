@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { motion, useMotionValue, useSpring, animate } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import "./IPadCursor.css";
 
 // Selectors for elements the cursor should snap/morph to

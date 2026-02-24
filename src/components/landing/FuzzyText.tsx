@@ -67,7 +67,7 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
 
       try {
         // try to load font string
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+         
         // @ts-ignore
         await document.fonts.load(fontString);
       } catch {
