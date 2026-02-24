@@ -1,8 +1,6 @@
 import React, { useMemo } from 'react';
-import { ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
-function detectOS() {
+function detectOS(): 'windows' | 'android' | 'ios' | 'mac' | 'linux' | 'unknown' {
   if (typeof navigator === 'undefined') return 'unknown';
   const ua = navigator.userAgent || navigator.vendor || (window as any).opera || '';
   if (/windows phone/i.test(ua)) return 'windows';
@@ -14,11 +12,14 @@ function detectOS() {
   return 'unknown';
 }
 
-const Downloads: React.FC = () => {
-  const os = useMemo(() => detectOS(), []);
+function Downloads(): JSX.Element {
+  const os = useMemo(detectOS, []);
 
   // Placeholder URLs — replace with real assets when available
-  const urls = {
+  const urls: {
+    app: { ios: string; android: string; default: string };
+    software: { windows: string; mac: string; linux: string; default: string };
+  } = {
     app: {
       ios: 'https://apps.apple.com/',
       android: 'https://play.google.com/store',
@@ -32,13 +33,18 @@ const Downloads: React.FC = () => {
     },
   };
 
+  function getCardClass(target: string): string {
+    const base = 'p-4 rounded-lg border border-border bg-card text-center opacity-60 pointer-events-none';
+    return os === target ? `${base} ring-2 ring-primary` : base;
+  }
+
   return (
     <div className="min-h-screen bg-background pt-28 pb-16 px-6 flex flex-col">
       <div className="max-w-7xl mx-auto text-center my-auto w-full">
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Downloads</h1>
         <div className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-sm text-accent-foreground font-medium mb-6 mx-auto w-fit">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-          downloads arent available yet. we're still under development
+          Downloads arent available yet. We're still under development.
         </div>
 
         <section>
@@ -50,7 +56,7 @@ const Downloads: React.FC = () => {
               aria-disabled="true"
               onClick={(e) => e.preventDefault()}
               title="Under development"
-              className={`p-4 rounded-lg border border-border bg-card text-center opacity-60 pointer-events-none ${os === 'windows' ? 'ring-2 ring-primary' : ''}`}>
+              className={getCardClass('windows')}>
               <img src="/icons/microsoft-svgrepo-com.svg" alt="Windows" className="mx-auto w-8 h-8 mb-2" />
               <div className="font-semibold">Windows</div>
               <div className="text-sm text-muted-foreground mt-1">Installer (.exe)</div>
@@ -61,7 +67,7 @@ const Downloads: React.FC = () => {
               aria-disabled="true"
               onClick={(e) => e.preventDefault()}
               title="Under development"
-              className={`p-4 rounded-lg border border-border bg-card text-center opacity-60 pointer-events-none ${os === 'mac' ? 'ring-2 ring-primary' : ''}`}>
+              className={getCardClass('mac')}>
               <img src="/icons/apple-svgrepo-com.svg" alt="macOS" className="mx-auto w-8 h-8 mb-2" />
               <div className="font-semibold">macOS</div>
               <div className="text-sm text-muted-foreground mt-1">DMG</div>
@@ -72,7 +78,7 @@ const Downloads: React.FC = () => {
               aria-disabled="true"
               onClick={(e) => e.preventDefault()}
               title="Under development"
-              className={`p-4 rounded-lg border border-border bg-card text-center opacity-60 pointer-events-none ${os === 'linux' ? 'ring-2 ring-primary' : ''}`}>
+              className={getCardClass('linux')}>
               <img src="/icons/linux-svgrepo-com.svg" alt="Linux" className="mx-auto w-8 h-8 mb-2" />
               <div className="font-semibold">Linux</div>
               <div className="text-sm text-muted-foreground mt-1">AppImage</div>
@@ -90,7 +96,7 @@ const Downloads: React.FC = () => {
               aria-disabled="true"
               onClick={(e) => e.preventDefault()}
               title="Under development"
-              className={`p-4 rounded-lg border border-border bg-card text-center opacity-60 pointer-events-none ${os === 'ios' ? 'ring-2 ring-primary' : ''}`}>
+              className={getCardClass('ios')}>
               <img src="/icons/apple-svgrepo-com.svg" alt="App Store" className="mx-auto w-8 h-8 mb-2" />
               <div className="font-semibold">iOS (App Store)</div>
               <div className="text-sm text-muted-foreground mt-1">App Store</div>
@@ -101,7 +107,7 @@ const Downloads: React.FC = () => {
               aria-disabled="true"
               onClick={(e) => e.preventDefault()}
               title="Under development"
-              className={`p-4 rounded-lg border border-border bg-card text-center opacity-60 pointer-events-none ${os === 'android' ? 'ring-2 ring-primary' : ''}`}>
+              className={getCardClass('android')}>
               <img src="/icons/google-play-svgrepo-com.svg" alt="Google Play" className="mx-auto w-8 h-8 mb-2" />
               <div className="font-semibold">Android (Google Play)</div>
               <div className="text-sm text-muted-foreground mt-1">Google Play</div>

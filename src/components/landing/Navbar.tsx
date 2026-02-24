@@ -31,14 +31,14 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps): JSX.Elemen
           </a>
 
           <div className="hidden md:flex items-center gap-8">
-            {links.map((l) => (
+            {links.map((link) => (
               <NavLink
-                key={l.href}
-                to={l.href}
+                key={link.href}
+                to={link.href}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 activeClassName="text-primary font-medium"
               >
-                {l.label}
+                {link.label}
               </NavLink>
             ))}
           </div>
@@ -92,15 +92,15 @@ export default function Navbar({ onJoinWaitlistClick }: NavbarProps): JSX.Elemen
               className="md:hidden w-full border-t border-border mt-4 pt-4 pb-6 space-y-3 pointer-events-auto px-6"
               role="menu"
             >
-              {links.map((l) => (
+              {links.map((link) => (
                 <NavLink
-                  key={l.href}
-                  to={l.href}
+                  key={link.href}
+                  to={link.href}
                   onClick={() => setMobileOpen(false)}
                   className="block text-sm text-muted-foreground hover:text-foreground py-2"
                   activeClassName="text-primary font-medium"
                 >
-                  {l.label}
+                  {link.label}
                 </NavLink>
               ))}
 
