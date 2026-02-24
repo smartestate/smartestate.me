@@ -38,7 +38,7 @@ const Downloads: React.FC = () => {
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Downloads</h1>
         <div className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-sm text-accent-foreground font-medium mb-6 mx-auto w-fit">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-          Now under development
+          downloads arent available yet. we're still under development
         </div>
 
         <section>
