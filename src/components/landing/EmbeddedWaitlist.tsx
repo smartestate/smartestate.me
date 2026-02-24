@@ -42,6 +42,9 @@ export default function EmbeddedWaitlist(): JSX.Element {
           style={{ border: "none" }}
           title="Join the waitlist"
         />
+        <div className="mt-4 text-sm text-muted-foreground">
+          Can't see the form? <a href={`${baseUrl}/forms/${formId}`} target="_blank" rel="noreferrer" className="text-primary hover:underline">Open the waitlist in a new tab</a>.
+        </div>
       </div>
     </section>
   );

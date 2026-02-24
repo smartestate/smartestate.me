@@ -13,6 +13,9 @@ export default function MarketResearchSurvey(): JSX.Element {
             marginWidth={0}
             style={{ border: "none" }}
           />
+          <div className="mt-4 text-sm text-muted-foreground">
+            Can't see the form? <a href="https://app.youform.com/forms/xehdqwp1" target="_blank" rel="noreferrer" className="text-primary hover:underline">Open the survey in a new tab</a>.
+          </div>
         </div>
       </div>
     </main>
