@@ -7,8 +7,9 @@
     pointer-events: none;
     will-change: transform, width, height, border-radius, opacity;
     mix-blend-mode: normal;
-    background: rgba(120, 120, 130, 0.18);
-    border: 1px solid rgba(120, 120, 130, 0.08);
+    /* Darker, slightly more opaque cursor for better visibility */
+    background: rgba(40, 40, 50, 0.36);
+    border: 1px solid rgba(40, 40, 50, 0.18);
     backdrop-filter: blur(1px);
     transition: opacity 0.2s ease;
 }
@@ -23,8 +24,8 @@
 }
 
 .ipad-cursor--pressing {
-    /* handled via framer-motion scale, but we make it slightly darker */
-    background: rgba(100, 100, 115, 0.28);
+    /* handled via framer-motion scale; darker when pressing */
+    background: rgba(30, 30, 40, 0.52);
 }
 
 .ipad-cursor--text {
