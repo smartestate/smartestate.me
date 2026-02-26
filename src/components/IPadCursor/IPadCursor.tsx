@@ -155,6 +155,23 @@ export default function IPadCursor() {
     const handleMouseLeave = useCallback(() => setHidden(true), []);
     const handleMouseEnter = useCallback(() => setHidden(false), []);
 
+    // Hide cursor when pointer is over an iframe (embedded forms, widgets)
+    const handleElementMouseOver = useCallback((e: Event) => {
+        const t = e.target as Element | null;
+        if (t && (t.tagName === "IFRAME" || t.closest?.("iframe"))) {
+            setHidden(true);
+        }
+    }, []);
+    const handleElementMouseOut = useCallback((e: Event) => {
+        const t = e.target as Element | null;
+        if (t && (t.tagName === "IFRAME" || t.closest?.("iframe"))) {
+            setHidden(false);
+            // force a recompute so the cursor reappears in the right place
+            const { x: mx, y: my } = mousePos.current;
+            if (mx || my) updateCursorAt(mx, my);
+        }
+    }, [updateCursorAt]);
+
     useEffect(() => {
         // Detect touch devices — don't attach listeners
         if (window.matchMedia("(pointer: coarse)").matches) return;
@@ -165,6 +182,9 @@ export default function IPadCursor() {
         window.addEventListener("mouseup", handleMouseUp);
         document.documentElement.addEventListener("mouseleave", handleMouseLeave);
         document.documentElement.addEventListener("mouseenter", handleMouseEnter);
+        // Listen for entering/exiting iframe elements (embedded forms)
+        document.addEventListener("mouseover", handleElementMouseOver, { capture: true });
+        document.addEventListener("mouseout", handleElementMouseOut, { capture: true });
 
         return () => {
             window.removeEventListener("mousemove", handleMouseMove);
@@ -173,6 +193,8 @@ export default function IPadCursor() {
             window.removeEventListener("mouseup", handleMouseUp);
             document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
             document.documentElement.removeEventListener("mouseenter", handleMouseEnter);
+            document.removeEventListener("mouseover", handleElementMouseOver, { capture: true } as EventListenerOptions);
+            document.removeEventListener("mouseout", handleElementMouseOut, { capture: true } as EventListenerOptions);
         };
     }, [handleMouseMove, handleScroll, handleMouseDown, handleMouseUp, handleMouseLeave, handleMouseEnter]);
 
