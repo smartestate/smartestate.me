@@ -16,7 +16,24 @@
     <meta name="twitter:image" content="/og/og-survey.png" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; max-width:640px; margin:48px auto; text-align:center;">
+      <h1>Market Research Survey</h1>
+      <p>Loading the survey… If you are not redirected, <a href="/">open the site</a>.</p>
+    </div>
+
+    <script>
+      // Keep OG meta for crawlers. For users, redirect to the SPA root using a hash
+      // so client-side routing can restore the survey view. This avoids a blank
+      // page when the built JS isn't available at this path on static hosts.
+      (function(){
+        try {
+          // Use replace so there's no extra history entry
+          window.location.replace('/#market-research-survey');
+        } catch (e) {
+          // If redirect fails, user can click the link above.
+          console.warn('Redirect to SPA failed', e);
+        }
+      })();
+    </script>
   </body>
 </html>
