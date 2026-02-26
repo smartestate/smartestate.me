@@ -1,46 +1,18 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
     <title>Market Research Survey — Smart Estate</title>
-    <meta name="description" content="Take the Smart Estate market research survey." />
-
-    <!-- Open Graph specific to this page -->
-    <meta property="og:title" content="Market Research Survey — Smart Estate" />
-    <meta property="og:description" content="Take the Smart Estate market research survey." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og/og-survey.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/og/og-survey.png" />
+    <meta name="description" content="Market research survey" />
+    <link rel="icon" href="/favicon.ico" />
+    <script type="module" crossorigin src="/assets/index-56o5JugQ.js"></script> 
+    <link rel="stylesheet" href="/assets/index-Cq1Ch4PZ.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <!--
-      Load the actual app bundle referenced by the site's root index.html at runtime.
-      This lets this static page (served at /market-research-survey) boot the same
-      built JS that the root page uses, then restore the current path so the SPA
-      can handle the route correctly.
-    -->
-    <script>
-      (async function(){
-        try{
-          const resp = await fetch('/');
-          const html = await resp.text();
-          const m = html.match(/<script\s+type=["']module["']\s+src=["']([^"']+)["']/i);
-          const src = m ? m[1] : '/src/main.tsx';
-          const s = document.createElement('script');
-          s.type = 'module';
-          s.src = src;
-          document.body.appendChild(s);
-          s.addEventListener('load', function(){
-            try{ history.replaceState({}, document.title || '', location.pathname + location.search + location.hash); }catch(e){}
-          });
-        }catch(e){
-          console.error('Failed to load app bundle from root:', e);
-        }
-      })();
-    </script>
+    <div class="container mx-auto py-12 px-4">
+      <h1 class="text-3xl font-semibold mb-6">Market Research Survey</h1>       
+      <div data-youform-embed data-form='xehdqwp1' data-base-url='https://app.youform.com' data-width='100%' data-height='700'></div>                               </div>
+    <script src="https://app.youform.com/embed.js"></script>
   </body>
 </html>
