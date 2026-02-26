@@ -16,22 +16,29 @@
     <meta name="twitter:image" content="/og/og-survey.png" />
   </head>
   <body>
-    <div style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; max-width:640px; margin:48px auto; text-align:center;">
-      <h1>Market Research Survey</h1>
-      <p>Loading the survey… If you are not redirected, <a href="/">open the site</a>.</p>
-    </div>
-
+    <div id="root"></div>
+    <!--
+      Load the actual app bundle referenced by the site's root index.html at runtime.
+      This lets this static page (served at /market-research-survey) boot the same
+      built JS that the root page uses, then restore the current path so the SPA
+      can handle the route correctly.
+    -->
     <script>
-      // Keep OG meta for crawlers. For users, redirect to the SPA root using a hash
-      // so client-side routing can restore the survey view. This avoids a blank
-      // page when the built JS isn't available at this path on static hosts.
-      (function(){
-        try {
-          // Use replace so there's no extra history entry
-          window.location.replace('/#market-research-survey');
-        } catch (e) {
-          // If redirect fails, user can click the link above.
-          console.warn('Redirect to SPA failed', e);
+      (async function(){
+        try{
+          const resp = await fetch('/');
+          const html = await resp.text();
+          const m = html.match(/<script\s+type=["']module["']\s+src=["']([^"']+)["']/i);
+          const src = m ? m[1] : '/src/main.tsx';
+          const s = document.createElement('script');
+          s.type = 'module';
+          s.src = src;
+          document.body.appendChild(s);
+          s.addEventListener('load', function(){
+            try{ history.replaceState({}, document.title || '', location.pathname + location.search + location.hash); }catch(e){}
+          });
+        }catch(e){
+          console.error('Failed to load app bundle from root:', e);
         }
       })();
     </script>
